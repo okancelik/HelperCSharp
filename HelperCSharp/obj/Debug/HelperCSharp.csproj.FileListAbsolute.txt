@@ -1,0 +1,5 @@
+C:\Users\ibrahim\Documents\GitHub\HelperCSharp\HelperCSharp\HelperCSharp\bin\Debug\HelperCSharp.dll
+C:\Users\ibrahim\Documents\GitHub\HelperCSharp\HelperCSharp\HelperCSharp\bin\Debug\HelperCSharp.pdb
+C:\Users\ibrahim\Documents\GitHub\HelperCSharp\HelperCSharp\HelperCSharp\obj\Debug\HelperCSharp.csprojResolveAssemblyReference.cache
+C:\Users\ibrahim\Documents\GitHub\HelperCSharp\HelperCSharp\HelperCSharp\obj\Debug\HelperCSharp.dll
+C:\Users\ibrahim\Documents\GitHub\HelperCSharp\HelperCSharp\HelperCSharp\obj\Debug\HelperCSharp.pdb
