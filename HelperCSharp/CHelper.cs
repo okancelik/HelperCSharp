@@ -2,7 +2,7 @@
 
 namespace HelperCSharp
 {
-    public class Helper
+    public class CHelper
     {
         /// <summary>
         /// Gelen parametreyi "Int32" türüne çevirip geri döndürür. 
@@ -242,7 +242,7 @@ namespace HelperCSharp
         }
 
         /// <summary>
-        /// Gelen string'in içindeki ('_','-','$','&','#','?','%','/','\','~','*','+') karakteri varsa boşluğa (' ') çevirir.
+        /// Gelen string'in içindeki ('_','-','$','&','#','?','%','/','\','~','*','+',"=") karakteri varsa boşluğa (' ') çevirir.
         /// Hata durumunda gelen string'i geri döndürür.
         /// </summary>
         /// <param name="text"></param>
@@ -254,7 +254,7 @@ namespace HelperCSharp
             {
                 foreach (var item in text)
                 {
-                    if (item == '_' || item == '-'||item == '$'||item == '&'||item == '#'||item == '?'||item == '%'||item == '/'||item == '\\'||item == '~'||item == '*'||item == '+')
+                    if (item == '_' || item == '-' || item == '$' || item == '&' || item == '#' || item == '?' || item == '%' || item == '/' || item == '\\' || item == '~' || item == '*' || item == '+' || item == '=')
                     {
                         newText += ' ';
                     }
