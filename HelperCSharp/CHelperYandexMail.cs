@@ -4,7 +4,7 @@ using System.Net.Mail;
 
 namespace HelperCSharp
 {
-    public class CHelperMail
+    public class CHelperYandexMail
     {
         /// <summary>
         /// E-Posta'nin kimden gönderilecegi bilgisini tutar
@@ -42,23 +42,26 @@ namespace HelperCSharp
         /// Maili gönderecek adresin şifresini tutar.
         /// </summary>
         public string Password { get; set; }
+
         /// <summary>
         /// Maili gönderecek adresin SMTP sunucusunun isim bilgisini tutar.
         /// </summary>
-        public string Host { get; set; }
+        private string Host = "smtp.yandex.ru";
+
         /// <summary>
         /// Maili gönderecek adresin SMTP sunucusunun Port bilgisini tutar.
         /// </summary>
-        public int Port { get; set; }
+        private int Port = 587;
+
         /// <summary>
         /// SSL bağlantı bilgisini tutar.
         /// True : Açık, False:Kapalı. Not : Belirtmezseniz False Gönderir.
         /// </summary>
-        public bool SSL { get; set; }
+        private bool SSL = true;
 
 
         ///////////////////////////////////////////////////////////////////////////
-        
+
         /// <summary>
         /// Exceptionları Tutar.
         /// Class içinde kullanılır.
@@ -68,7 +71,7 @@ namespace HelperCSharp
         /// Mail Gönderim Durumunu Tutar.
         /// Class içinde kullanılır.
         /// </summary>
-        private bool   mailState;
+        private bool mailState;
 
 
         /// <summary>
@@ -91,19 +94,20 @@ namespace HelperCSharp
                 {
                     foreach (var item in StringPart(CC))
                     {
-                        mail.CC.Add(item);
-                    }
+                       mail.CC.Add(item); 
+                    }                   
                 }
                 catch (Exception)
                 {
                     // CC yoksa Hata Vermemesi için....
                 }
+
                 try
                 {
                     foreach (var item in StringPart(Attachments))
                     {
-                      mail.Attachments.Add(new Attachment(@item));  
-                    } 
+                        mail.Attachments.Add(new Attachment(@item));
+                    }
                 }
                 catch
                 {
@@ -112,26 +116,25 @@ namespace HelperCSharp
                 mail.Subject = Subject;
                 mail.IsBodyHtml = true;
                 mail.Body = Body;
-                
 
                 SmtpClient smtp = new SmtpClient();
 
                 smtp.Credentials = new NetworkCredential(SenderEmail, Password);
-                smtp.Port = Port;
-                smtp.Host = Host;
                 smtp.EnableSsl = SSL;
+                smtp.Host = Host;
+                smtp.Port = Port;
                 smtp.Timeout = 50000;
 
                 try
                 {
-                    mailState = true;
                     smtp.Send(mail);
+                    mailState = true;
                 }
                 catch (SmtpException ex)
                 {
                     mailState = false;
                     Exception = ex.GetBaseException().ToString();
-                }  
+                }
             }
             catch (Exception ex)
             {
@@ -164,7 +167,7 @@ namespace HelperCSharp
         /// Virgülle ayrılan mail adreslerini veya Attachmentları string diziye cevip geri döndürür.
         /// Class içinde kullanılır.
         /// </summary>
-        /// <param name="to"></param>
+        /// <param name="str"></param>
         /// <returns></returns>
         private string[] StringPart(string str)
         {
@@ -181,7 +184,7 @@ namespace HelperCSharp
             }
             catch (Exception)
             {
-              return  new string[0];
+                return new string[0];
             }
         }
     }
