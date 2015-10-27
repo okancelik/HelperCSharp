@@ -236,7 +236,7 @@ namespace HelperCSharp
 
                 newText = text;
             }
-           
+
 
             return newText;
         }
@@ -270,6 +270,33 @@ namespace HelperCSharp
             }
 
             return newText;
+        }
+        /// <summary>
+        /// Belirtilen karakter uzunluğunda rastgele kod üretir.
+        /// Hata durumunda "" (String) Döndürür.
+        /// </summary>
+        /// <param name="length"></param>
+        /// <returns></returns>
+        public static string RandomCode(int length)
+        {
+            Random rnd = new Random();
+            string randomCode = "";
+            try
+            {
+                string[] strChars = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0" };
+
+                for (int i = 0; i < length; i++)
+                {
+                    int rndNumber = rnd.Next(0, strChars.Length);
+
+                    randomCode += strChars[rndNumber];
+                }
+            }
+            catch (Exception)
+            {
+                randomCode = "";
+            }
+            return randomCode;
         }
     }
 }

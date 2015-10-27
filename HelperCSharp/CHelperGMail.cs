@@ -126,7 +126,7 @@ namespace HelperCSharp
 
                 try
                 {
-                    smtp.Send(mail );
+                    smtp.Send(mail);
                     mailState = true;
                 }
                 catch (SmtpException ex)
