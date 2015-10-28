@@ -88,13 +88,12 @@ namespace HelperCSharp
                 return DateTime.MinValue;
             }
         }
-
         /// <summary>
-        /// Gelen tarihin saatini sıfırlayıp geri döndürür. 
+        /// Gelen tarihin saatini günün ilk saati yapıp geri döndürür.
         /// </summary>
         /// <param name="date"></param>
         /// <returns></returns>
-        public static DateTime ConvertToDateTimeDefaultHour(DateTime date)
+        public static DateTime ConvertToDateTimeStartHour(DateTime date)
         {
             try
             {
@@ -106,8 +105,57 @@ namespace HelperCSharp
             }
         }
         /// <summary>
-        /// Gelen Tarih Hafta Sonuna Denk Gelirse Bir Önceki Cuma Gününün Tarihini Döndürür.
-        /// Hafta Sonuna Denk Gelmiyorsa Tarihi Geldiği Şekilde Geri Döndürür.
+        /// Gelen tarihin saatini günün son saati yapıp geri döndürür.
+        /// </summary>
+        /// <param name="date"></param>
+        /// <returns></returns>
+        public static DateTime ConvertToDateTimeEndHour(DateTime date)
+        {
+            try
+            {
+                return Convert.ToDateTime(date.Day + "." + date.Month + "." + date.Year + " 23:59:59");
+            }
+            catch
+            {
+                return date;
+            }
+        }
+        /// <summary>
+        /// Gönderilen tarihin bulunduğu ayın son gününü döndürür.
+        /// </summary>
+        /// <param name="date"></param>
+        /// <returns></returns>
+        public static DateTime ConvertToDateEndOfTheMonth(DateTime date)
+        {
+            try
+            {
+                return ConvertToDateTime("01." + date.AddMonths(1).Month + "." + date.Year + " 23:59:59").AddDays(-1);
+            }
+            catch (Exception)
+            {
+                return date;
+            }
+        }
+        /// <summary>
+        /// Gönderilen tarihin bulunduğu ayın ilk gününü döndürür.
+        /// </summary>
+        /// <param name="date"></param>
+        /// <returns></returns>
+        public static DateTime ConvertToDateStartOfTheMonth(DateTime date)
+        {
+            try
+            {
+                return ConvertToDateTime("01." + date.Month + "." + date.Year + " 00:00:00");
+            }
+            catch (Exception)
+            {
+                return date;
+            }
+        }
+        /// <summary>
+        /// Gelen Tarih Hafta Sonuna Denk Gelirse Bir önceki Cuma Gününün Tarihini Döndürür.
+        /// Hafta sonuna denk gelmiyorsa tarihi geldiği şekilde geri döndürür.
+        /// Hata durumunda gelen tarihi geri döndürür.
         /// </summary>
         /// <param name="date"></param>
         /// <returns></returns>
@@ -240,7 +288,6 @@ namespace HelperCSharp
 
             return newText;
         }
-
         /// <summary>
         /// Gelen string'in içindeki ('_','-','$','&','#','?','%','/','\','~','*','+',"=") karakteri varsa boşluğa (' ') çevirir.
         /// Hata durumunda gelen string'i geri döndürür.
