@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 
 namespace HelperCSharp
 {
@@ -83,7 +84,7 @@ namespace HelperCSharp
             {
                 return Convert.ToDateTime(obj);
             }
-            catch
+            catch(Exception e)
             {
                 return DateTime.MinValue;
             }
@@ -225,71 +226,33 @@ namespace HelperCSharp
             {
                 foreach (var item in text)
                 {
-                    if (item == 'ö')
+                    switch (item)
                     {
-                        newText += 'o';
-                    }
-                    else if (item == 'Ö')
-                    {
-                        newText += 'O';
-                    }
-                    else if (item == 'ü')
-                    {
-                        newText += 'u';
-                    }
-                    else if (item == 'Ü')
-                    {
-                        newText += 'U';
-                    }
-                    else if (item == 'ş')
-                    {
-                        newText += 's';
-                    }
-                    else if (item == 'Ş')
-                    {
-                        newText += 'S';
-                    }
-                    else if (item == 'ğ')
-                    {
-                        newText += 'g';
-                    }
-                    else if (item == 'Ğ')
-                    {
-                        newText += 'G';
-                    }
-                    else if (item == 'ç')
-                    {
-                        newText += 'c';
-                    }
-                    else if (item == 'Ç')
-                    {
-                        newText += 'C';
-                    }
-                    else if (item == 'İ')
-                    {
-                        newText += 'I';
-                    }
-                    else if (item == 'ı')
-                    {
-                        newText += 'i';
-                    }
-                    else
-                    {
-                        newText += item;
+                        case 'ö': newText += 'o';  break;
+                        case 'Ö': newText += 'O';  break;
+                        case 'ü': newText += 'u';  break;
+                        case 'Ü': newText += 'U';  break;
+                        case 'ş': newText += 's';  break;
+                        case 'Ş': newText += 'S';  break;
+                        case 'ğ': newText += 'g';  break;
+                        case 'Ğ': newText += 'G';  break;
+                        case 'ç': newText += 'c';  break;
+                        case 'Ç': newText += 'C';  break;
+                        case 'İ': newText += 'I';  break;
+                        case 'ı': newText += 'i';  break;
+                        default : newText += item; break;
                     }
                 }
             }
             catch
             {
-
                 newText = text;
             }
-
 
             return newText;
         }
         /// <summary>
-        /// Gelen string'in içindeki ('_','-','$','&','#','?','%','/','\','~','*','+',"=") karakteri varsa boşluğa (' ') çevirir.
+        /// Gelen string'in içindeki ('_','-','$','&','#','?','%','/','\','~','*','+',"=","<",">","{","}","[","]","(",")") karakteri varsa boşluğa (' ') çevirir.
         /// Hata durumunda gelen string'i geri döndürür.
         /// </summary>
         /// <param name="text"></param>
@@ -301,13 +264,30 @@ namespace HelperCSharp
             {
                 foreach (var item in text)
                 {
-                    if (item == '_' || item == '-' || item == '$' || item == '&' || item == '#' || item == '?' || item == '%' || item == '/' || item == '\\' || item == '~' || item == '*' || item == '+' || item == '=')
+                    switch (item)
                     {
-                        newText += ' ';
-                    }
-                    else
-                    {
-                        newText += item;
+                        case '_' : newText += ' ' ; break;
+                        case '-' : newText += ' ' ; break;
+                        case '$' : newText += ' ' ; break;
+                        case '&' : newText += ' ' ; break;
+                        case '#' : newText += ' ' ; break;
+                        case '?' : newText += ' ' ; break;
+                        case '%' : newText += ' ' ; break;
+                        case '/' : newText += ' ' ; break;
+                        case '\\': newText += ' ' ; break;
+                        case '~' : newText += ' ' ; break;
+                        case '*' : newText += ' ' ; break;
+                        case '+' : newText += ' ' ; break;
+                        case '=' : newText += ' ' ; break;
+                        case '<' : newText += ' ' ; break;
+                        case '>' : newText += ' ' ; break;
+                        case '{' : newText += ' ' ; break;
+                        case '}' : newText += ' ' ; break;
+                        case '[' : newText += ' ' ; break;
+                        case ']' : newText += ' ' ; break;
+                        case '(' : newText += ' '; break;
+                        case ')' : newText += ' '; break;
+                        default  : newText += item;break;
                     }
                 }
             }
@@ -345,5 +325,6 @@ namespace HelperCSharp
             }
             return randomCode;
         }
+        
     }
 }
