@@ -1,89 +1,17 @@
 ﻿using System;
 using System.Diagnostics;
-using System.IO;
 
 namespace HelperCSharp
 {
     public class CHelper
     {
         /// <summary>
-        /// Gelen parametreyi "Int32" türüne çevirip geri döndürür. 
-        /// Eğer gelen parametre çevrilemiyorsa geriye 0 "sıfır" döndürür.
-        /// </summary>
-        /// <param name="obj"></param>
-        public static int ConvertToInt(object obj)
-        {
-            try
-            {
-                return Convert.ToInt32(obj);
-            }
-            catch(Exception e)
-            {
-                SetEventLog("ConvertToInt Exception : " + e, 3);
-                return 0;
-            }
-        }
-        /// <summary>
-        /// Gelen parametreyi "string" türüne çevirip geri döndürür. 
-        /// Eğer gelen parametre çevrilemiyorsa geriye "String.Empty" döndürür.
-        /// </summary>
-        /// <param name="obj"></param>
-        /// <returns></returns>
-        public static string ConvertToString(object obj)
-        {
-            try
-            {
-                return Convert.ToString(obj);
-            }
-            catch(Exception e)
-            {
-                SetEventLog("ConvertToString Exception : " + e, 3);
-                return String.Empty;
-            }
-        }
-        /// <summary>
-        /// Gelen parametreyi "double" türüne çevirip geri döndürür. 
-        /// Eğer gelen parametre çevrilemiyorsa geriye "0.0" döndürür.
-        /// </summary>
-        /// <param name="obj"></param>
-        /// <returns></returns>
-        public static double ConvertToDouble(object obj)
-        {
-            try
-            {
-                return Convert.ToDouble(obj);
-            }
-            catch(Exception e)
-            {
-                SetEventLog("ConvertToDouble Exception : " + e, 3);
-                return 0.0;
-            }
-        }
-        /// <summary>
-        /// Gelen parametreyi "bool" türüne çevirip geri döndürür. 
-        /// Eğer gelen parametre çevrilemiyorsa geriye "False" döndürür.
-        /// </summary>
-        /// <param name="obj"></param>
-        /// <returns></returns>
-        public static bool ConvertToBoolean(object obj)
-        {
-            try
-            {
-                return Convert.ToBoolean(obj);
-            }
-            catch(Exception e)
-            {
-                SetEventLog("ConvertToBoolean Exception : " + e, 3);
-                return false;
-            }
-        }
-        /// <summary>
         /// Gelen parametreyi "DateTime" türüne çevirip geri döndürür. 
         /// Eğer gelen parametre çevrilemiyorsa geriye "DateTime.MinValue" döndürür.
         /// </summary>
         /// <param name="obj"></param>
         /// <returns></returns>
-        public static DateTime ConvertToDateTime(object obj)
+        private static DateTime ConvertToDateTime(object obj)
         {
             try
             {
@@ -138,7 +66,8 @@ namespace HelperCSharp
         {
             try
             {
-                return ConvertToDateTime("01." + date.AddMonths(1).Month + "." + date.Year + " 23:59:59").AddDays(-1);
+                DateTime newDate = date.AddMonths(1);
+                return ConvertToDateTime("01." + newDate.Month + "." + newDate.Year + " 23:59:59").AddDays(-1);
             }
             catch (Exception e)
             {
@@ -264,54 +193,6 @@ namespace HelperCSharp
             return newText;
         }
         /// <summary>
-        /// Gelen string'in içindeki ('_','-','$','&','#','?','%','/','\','~','*','+',"=","<",">","{","}","[","]","(",")") karakteri varsa boşluğa (' ') çevirir.
-        /// Hata durumunda gelen string'i geri döndürür.
-        /// </summary>
-        /// <param name="text"></param>
-        /// <returns></returns>
-        public static string CharactersClean(string text)
-        {
-            string newText = "";
-            try
-            {
-                foreach (var item in text)
-                {
-                    switch (item)
-                    {
-                        case '_': newText += ' '; break;
-                        case '-': newText += ' '; break;
-                        case '$': newText += ' '; break;
-                        case '&': newText += ' '; break;
-                        case '#': newText += ' '; break;
-                        case '?': newText += ' '; break;
-                        case '%': newText += ' '; break;
-                        case '/': newText += ' '; break;
-                        case '\\': newText += ' '; break;
-                        case '~': newText += ' '; break;
-                        case '*': newText += ' '; break;
-                        case '+': newText += ' '; break;
-                        case '=': newText += ' '; break;
-                        case '<': newText += ' '; break;
-                        case '>': newText += ' '; break;
-                        case '{': newText += ' '; break;
-                        case '}': newText += ' '; break;
-                        case '[': newText += ' '; break;
-                        case ']': newText += ' '; break;
-                        case '(': newText += ' '; break;
-                        case ')': newText += ' '; break;
-                        default: newText += item; break;
-                    }
-                }
-            }
-            catch(Exception e)
-            {
-                SetEventLog("CharactersClean Exception : " + e, 3);
-                newText = text;
-            }
-
-            return newText;
-        }
-        /// <summary>
         /// Belirtilen karakter uzunluğunda rastgele kod üretir.
         /// Hata durumunda "" (String) Döndürür.
         /// </summary>
@@ -340,22 +221,22 @@ namespace HelperCSharp
             return randomCode;
         }
         /// <summary>
-        /// 
+        /// HelperCSharp ile ilgili hataları Olay Günlüğüne Kaydeder
         /// </summary>
         /// <param name="logMesaj">string Mesage</param>
         /// <param name="logType">1:Information, 2: Warning, 3:Error</param>
         private static void SetEventLog(string logMesaj, int logType)
         {
+            EventLog log = new EventLog();
+            log.Source   = "HelperCSharp";
+            log.Log      = "HelperCSharp_Library_Logs";
+
             try
             {
-                EventLog log = new EventLog();
                 if (!EventLog.SourceExists("HelperCSharp"))
                 {
                     EventLog.CreateEventSource("HelperCSharp", "HelperCSharp_Library_Logs");
                 }
-
-                log.Source = "HelperCSharp";
-                log.Log = "HelperCSharp_Library_Logs";
 
                 switch (logType)
                 {
@@ -363,58 +244,15 @@ namespace HelperCSharp
                     case 2: log.WriteEntry(logMesaj, EventLogEntryType.Warning); break;
                     case 3: log.WriteEntry(logMesaj, EventLogEntryType.Error); break;
                 }
-
-                SetExceptionText(logMesaj);
             }
             catch(Exception e)
             {
-                SetExceptionText("SetEventLog Exception : "+e);
-            }
-        }
-
-        private static void SetExceptionText(string exception)
-        {
-            try
-            {
-                try
+                if (!EventLog.SourceExists("HelperCSharp"))
                 {
-                    TextWriter Dosya = File.AppendText(@"C:\\HelperCSharpeExceptions.txt");
-                    Dosya.WriteLine("");
-                    Dosya.Write(DateTime.Now);
-                    Dosya.WriteLine("");
-                    Dosya.WriteLine("______________________________________________________________________________________");
-                    Dosya.WriteLine("");
-                    Dosya.Write("\t" + exception);
-                    Dosya.WriteLine("");
-                    Dosya.WriteLine("\t==============================================================================");
-                    Dosya.WriteLine("");
-
-                    Dosya.Flush();
-                    Dosya.Close();
-                }
-                catch (Exception)
-                {
-                    TextWriter Dosya = File.CreateText(@"C:\\HelperCSharpeExceptions.txt");
-
-                    Dosya.WriteLine("");
-                    Dosya.Write(DateTime.Now);
-                    Dosya.WriteLine("");
-                    Dosya.WriteLine("______________________________________________________________________________________");
-                    Dosya.WriteLine("");
-                    Dosya.Write("\t" + exception);
-                    Dosya.WriteLine("");
-                    Dosya.WriteLine("\t==============================================================================");
-                    Dosya.WriteLine("");
-
-                    Dosya.Flush();
-                    Dosya.Close();
-                }
+                    EventLog.CreateEventSource("HelperCSharp", "HelperCSharp_Library_Logs");
+                    log.WriteEntry("SetEventLog Exception : " + e, EventLogEntryType.Error);
+                }    
             }
-            catch (System.Exception e)
-            {
-
-            }
-
         }
     }
 }
