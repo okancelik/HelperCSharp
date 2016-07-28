@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.IO;
 
 namespace HelperCSharp
 {
@@ -219,6 +220,41 @@ namespace HelperCSharp
                 randomCode = "";
             }
             return randomCode;
+        }
+        /// <summary>
+        /// Proje ana dizinine text yazdırır.
+        /// İhtiyaca göre uyarlanır.
+        /// </summary>
+        /// <param name="exception"></param>
+        public void SetExceptionText(string exception)
+        {
+            try
+            {
+                try
+                {
+                    var Path = AppDomain.CurrentDomain.BaseDirectory + "\\Logs\\Logs.txt"; // Proje ana klasörü içinde Log Klasörü içinde Log.txt...(Burası Kafamıza göre)
+                    TextWriter Dosya = File.AppendText(Path);
+                    Dosya.WriteLine("Date       : " + DateTime.Now);
+                    Dosya.WriteLine("Exception  : " + exception);
+                    Dosya.WriteLine("---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+                    Dosya.Flush();
+                    Dosya.Close();
+                }
+                catch (Exception) // txt Dosyası yoksa oluşturur.
+                {
+                    var Path = AppDomain.CurrentDomain.BaseDirectory + "\\Logs\\Logs.txt"; // Proje ana klasörü içinde Log Klasörü içinde Log.txt...(Burası Kafamıza göre)
+                    TextWriter Dosya = File.CreateText(@Path);
+                    Dosya.WriteLine("Date       : " + DateTime.Now);
+                    Dosya.WriteLine("Exception  : " + exception);
+                    Dosya.WriteLine("---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+                    Dosya.Flush();
+                    Dosya.Close();
+                }
+            }
+            catch (System.Exception e)
+            {
+
+            }
         }
         /// <summary>
         /// HelperCSharp ile ilgili hataları Olay Günlüğüne Kaydeder
