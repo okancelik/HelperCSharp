@@ -251,7 +251,7 @@ namespace HelperCSharp
                     Dosya.Close();
                 }
             }
-            catch (System.Exception e)
+            catch (System.Exception)
             {
 
             }
