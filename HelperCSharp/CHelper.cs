@@ -232,7 +232,7 @@ namespace HelperCSharp
             {
                 try
                 {
-                    var Path = AppDomain.CurrentDomain.BaseDirectory + "\\Logs\\Logs.txt"; // Proje ana klasörü içinde Log Klasörü içinde Log.txt...(Burası Kafamıza göre)
+                    var Path = AppDomain.CurrentDomain.BaseDirectory + "\\Logs.txt"; // Proje ana klasörü içinde Log Klasörü içinde Log.txt...(Burası Kafamıza göre)
                     TextWriter Dosya = File.AppendText(Path);
                     Dosya.WriteLine("Date       : " + DateTime.Now);
                     Dosya.WriteLine("Exception  : " + exception);
@@ -242,7 +242,7 @@ namespace HelperCSharp
                 }
                 catch (Exception) // txt Dosyası yoksa oluşturur.
                 {
-                    var Path = AppDomain.CurrentDomain.BaseDirectory + "\\Logs\\Logs.txt"; // Proje ana klasörü içinde Log Klasörü içinde Log.txt...(Burası Kafamıza göre)
+                    var Path = AppDomain.CurrentDomain.BaseDirectory + "\\Logs.txt"; // Proje ana klasörü içinde Log Klasörü içinde Log.txt...(Burası Kafamıza göre)
                     TextWriter Dosya = File.CreateText(@Path);
                     Dosya.WriteLine("Date       : " + DateTime.Now);
                     Dosya.WriteLine("Exception  : " + exception);

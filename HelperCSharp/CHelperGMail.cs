@@ -37,27 +37,27 @@ namespace HelperCSharp
         /// <summary>
         /// Maili gönderecek adresi tutar.
         /// </summary>
-        public string SenderEmail { get; set; }
+        public string SetSenderEmail { get; set; }
         /// <summary>
         /// Maili gönderecek adresin şifresini tutar.
         /// </summary>
-        public string Password { get; set; }
+        public string SetPassword { get; set; }
 
         /// <summary>
         /// Maili gönderecek adresin SMTP sunucusunun isim bilgisini tutar.
         /// </summary>
-        private string Host = "smtp.gmail.com";
+        private string SetHost = "smtp.gmail.com";
 
         /// <summary>
         /// Maili gönderecek adresin SMTP sunucusunun Port bilgisini tutar.
         /// </summary>
-        private int Port = 587;
+        private int SetPort = 587;
 
         /// <summary>
         /// SSL bağlantı bilgisini tutar.
         /// True : Açık, False:Kapalı. Not : Belirtmezseniz False Gönderir.
         /// </summary>
-        private bool SSL = true;
+        private bool SetSSL = true;
 
 
         ///////////////////////////////////////////////////////////////////////////
@@ -118,10 +118,10 @@ namespace HelperCSharp
 
                 SmtpClient smtp = new SmtpClient();
 
-                smtp.Credentials = new NetworkCredential(SenderEmail, Password);
-                smtp.EnableSsl = SSL;
-                smtp.Host = Host;
-                smtp.Port = Port;
+                smtp.Credentials = new NetworkCredential(SetSenderEmail, SetPassword);
+                smtp.EnableSsl = SetSSL;
+                smtp.Host = SetHost;
+                smtp.Port = SetPort;
                 smtp.Timeout = 50000;
 
                 try

@@ -1,0 +1,8 @@
+D:\GitHub\HelperCSharp\HelperCSharpTest\bin\Debug\HelperCSharpTest.exe.config
+D:\GitHub\HelperCSharp\HelperCSharpTest\bin\Debug\HelperCSharpTest.exe
+D:\GitHub\HelperCSharp\HelperCSharpTest\bin\Debug\HelperCSharpTest.pdb
+D:\GitHub\HelperCSharp\HelperCSharpTest\bin\Debug\HelperCSharp.dll
+D:\GitHub\HelperCSharp\HelperCSharpTest\bin\Debug\HelperCSharp.pdb
+D:\GitHub\HelperCSharp\HelperCSharpTest\obj\Debug\HelperCSharpTest.csprojResolveAssemblyReference.cache
+D:\GitHub\HelperCSharp\HelperCSharpTest\obj\Debug\HelperCSharpTest.exe
+D:\GitHub\HelperCSharp\HelperCSharpTest\obj\Debug\HelperCSharpTest.pdb

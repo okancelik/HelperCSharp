@@ -13,3 +13,8 @@ C:\Users\okanc\Documents\GitHub\HelperCSharp\HelperCSharp\bin\Debug\HelperCSharp
 C:\Users\okanc\Documents\GitHub\HelperCSharp\HelperCSharp\obj\Debug\HelperCSharp.csprojResolveAssemblyReference.cache
 C:\Users\okanc\Documents\GitHub\HelperCSharp\HelperCSharp\obj\Debug\HelperCSharp.dll
 C:\Users\okanc\Documents\GitHub\HelperCSharp\HelperCSharp\obj\Debug\HelperCSharp.pdb
+D:\GitHub\HelperCSharp\HelperCSharp\bin\Debug\HelperCSharp.dll
+D:\GitHub\HelperCSharp\HelperCSharp\bin\Debug\HelperCSharp.pdb
+D:\GitHub\HelperCSharp\HelperCSharp\obj\Debug\HelperCSharp.csprojResolveAssemblyReference.cache
+D:\GitHub\HelperCSharp\HelperCSharp\obj\Debug\HelperCSharp.dll
+D:\GitHub\HelperCSharp\HelperCSharp\obj\Debug\HelperCSharp.pdb
