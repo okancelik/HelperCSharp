@@ -50,7 +50,7 @@ namespace HelperCSharpTest
 
             /////////////// Begin : Settings ///////////////         
             mail.SetSenderEmail = "okan.celik@yandex.com";
-            mail.SetPassword    = "26subat1989";
+            mail.SetPassword    = "Password";
             /////////////// End   : Settings ///////////////
 
             /////////////// Begin : Mail     ///////////////
